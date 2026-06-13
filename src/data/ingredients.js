@@ -87,6 +87,7 @@ export const INGREDIENTS = {
   'dried-apricots': { name: 'Dried apricots', emoji: '🍑', aisle: 'cupboard' },
   'low-salt-stock': { name: 'Low-salt stock cube', emoji: '🧂', aisle: 'cupboard' },
   'sweetcorn':      { name: 'Sweetcorn (tinned)', emoji: '🌽', aisle: 'cupboard' },
+  'tinned-tuna':    { name: 'Tinned tuna (in water)', emoji: '🐟', aisle: 'cupboard' },
 
   // ── Frozen ─────────────────────────────────────────────────────
   'peas':           { name: 'Frozen peas', emoji: '🟢', aisle: 'frozen' },

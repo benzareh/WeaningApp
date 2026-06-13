@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import RecipeImage from '../ui/RecipeImage';
-import { StageBadge, TimeBadge, OverlapBadge } from '../ui/Badge';
+import { StageBadge, EffortBadge, OverlapBadge } from '../ui/Badge';
+import { getEffort } from '../../data/effortLevels';
 import { getStage, hasAllergenConflict } from '../../utils/helpers';
 import useStore from '../../store/useStore';
 
@@ -22,7 +23,7 @@ export default function RecipeCard({ recipe, overlap = 0 }) {
       <div className="relative">
         <RecipeImage recipe={recipe} className="h-44" />
         <div className="absolute left-3 top-3 flex gap-1.5">
-          <TimeBadge minutes={recipe.time} />
+          <EffortBadge effort={getEffort(recipe.effort)} />
         </div>
         <button
           onClick={(e) => {

@@ -32,6 +32,18 @@ export function TimeBadge({ minutes }) {
   );
 }
 
+export function EffortBadge({ effort }) {
+  if (!effort) return null;
+  return (
+    <span
+      className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold shadow-sm"
+      style={{ backgroundColor: effort.bg, color: effort.color, border: `1px solid ${effort.border}` }}
+    >
+      {effort.emoji} {effort.label}
+    </span>
+  );
+}
+
 export function OverlapBadge({ count }) {
   if (!count) return null;
   return (

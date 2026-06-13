@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import Modal from '../ui/Modal';
 import RecipeImage from '../ui/RecipeImage';
-import { OverlapBadge, TimeBadge } from '../ui/Badge';
+import { OverlapBadge, EffortBadge } from '../ui/Badge';
+import { getEffort } from '../../data/effortLevels';
 import { getAllRecipes } from '../../data/recipes';
 import { overlapScore, hasAllergenConflict, ageInMonths, stageForAge } from '../../utils/helpers';
 import useStore from '../../store/useStore';
@@ -79,7 +80,7 @@ export default function RecipePicker({ open, onClose, onPick, slot, plannedRecip
             <div className="min-w-0 flex-1">
               <div className="truncate text-sm font-semibold text-[#1A2B3C]">{recipe.title}</div>
               <div className="mt-1 flex flex-wrap items-center gap-1.5">
-                <TimeBadge minutes={recipe.time} />
+                <EffortBadge effort={getEffort(recipe.effort)} />
                 <OverlapBadge count={overlap} />
                 {timesPlanned > 0 && (
                   <span className="rounded-full bg-[#1A2B3C]/8 px-2 py-0.5 text-[10px] font-medium text-[#1A2B3C]/55">

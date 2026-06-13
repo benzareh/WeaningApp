@@ -1,7 +1,8 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Heart, Trash2, CalendarPlus } from 'lucide-react';
 import RecipeImage from '../components/ui/RecipeImage';
-import { StageBadge, AllergenBadge, TimeBadge } from '../components/ui/Badge';
+import { StageBadge, AllergenBadge, EffortBadge } from '../components/ui/Badge';
+import { getEffort } from '../data/effortLevels';
 import { getRecipeById } from '../data/recipes';
 import { getIngredient } from '../data/ingredients';
 import { ALLERGENS } from '../data/allergens';
@@ -86,7 +87,7 @@ export default function RecipeDetail() {
         <div className="relative">
           <RecipeImage recipe={recipe} className="h-56 sm:h-72" />
           <div className="absolute left-4 top-4">
-            <TimeBadge minutes={recipe.time} />
+            <EffortBadge effort={getEffort(recipe.effort)} />
           </div>
           <button
             onClick={() => toggleFavourite(recipe.id)}
