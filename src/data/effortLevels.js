@@ -5,7 +5,7 @@ export const EFFORT_LEVELS = {
   easy: {
     id: 'easy',
     label: 'Easy PEA-sy',
-    emoji: '🫛',
+    emoji: '🟢',
     color: '#2E7D32',
     bg: '#E8F5E9',
     border: '#A5D6A7',

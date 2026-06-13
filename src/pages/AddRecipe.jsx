@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Camera, Plus, X, Check } from 'lucide-react';
 import { AGE_STAGES, ALLERGENS } from '../data/allergens';
 import { INGREDIENTS } from '../data/ingredients';
+import { EFFORT_LEVELS } from '../data/effortLevels';
 import { compressImage, uid } from '../utils/helpers';
 import useStore from '../store/useStore';
 
@@ -32,7 +33,7 @@ export default function AddRecipe() {
   const [photo, setPhoto] = useState('');
   const [stages, setStages] = useState(['stage2']);
   const [meals, setMeals] = useState(['lunch', 'dinner']);
-  const [time, setTime] = useState(15);
+  const [effort, setEffort] = useState('easy');
   const [pureeName, setPureeName] = useState('');
   const [pureeSteps, setPureeSteps] = useState('');
   const [fingerName, setFingerName] = useState('');
@@ -84,7 +85,7 @@ export default function AddRecipe() {
       title: title.trim(),
       stages,
       meals,
-      time: Number(time) || 15,
+      effort,
       emoji: '🍽️',
       gradient: GRADIENTS[Math.floor(Math.random() * GRADIENTS.length)],
       image: photo,
@@ -189,13 +190,29 @@ export default function AddRecipe() {
               ))}
             </div>
           </div>
-          <div>
-            <label className="mb-1.5 block text-sm font-semibold">Prep time (min)</label>
-            <input
-              type="number" min="1" max="120" value={time}
-              onChange={(e) => setTime(e.target.value)}
-              className="w-24 rounded-2xl border border-[#1A2B3C]/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-[#C4704F]/60"
-            />
+        </div>
+
+        {/* Effort */}
+        <div>
+          <label className="mb-1.5 block text-sm font-semibold">How much effort?</label>
+          <div className="flex flex-wrap gap-2">
+            {Object.values(EFFORT_LEVELS).map((lvl) => {
+              const active = effort === lvl.id;
+              return (
+                <button
+                  key={lvl.id}
+                  onClick={() => setEffort(lvl.id)}
+                  className="rounded-full px-4 py-2 text-sm font-semibold transition"
+                  style={
+                    active
+                      ? { backgroundColor: lvl.bg, color: lvl.color, border: `1px solid ${lvl.border}` }
+                      : { backgroundColor: 'white', color: '#1A2B3C99', border: '1px solid transparent' }
+                  }
+                >
+                  {lvl.emoji} {lvl.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 

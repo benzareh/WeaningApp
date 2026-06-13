@@ -1695,6 +1695,168 @@ export const RECIPES = [
     tags: ['veggie', 'batch-cook'],
   },
 
+  // ══════════════════════════════════════════════════════
+  // STAGE 3 · Weekend projects (more involved — MASH-ellin Star)
+  // These are bigger family-style cooks. Extra ingredients are fine
+  // for these showpiece meals.
+  // ══════════════════════════════════════════════════════
+
+  {
+    id: 'mini-shepherds-pie',
+    title: "Mini Shepherd's Pie",
+    stages: ['stage3'],
+    meals: ['dinner'],
+    effort: 'hard',
+    emoji: '🥧',
+    gradient: ['#BCAAA4', '#5D4037'],
+    image: 'https://images.unsplash.com/photo-1619895092538-128341789043?w=800&q=80',
+    intro: 'The ultimate comfort dinner, baby-sized. A proper weekend cook — make a big dish and share with the whole family.',
+    puree: {
+      name: 'Soft lamb & veg mince under mash',
+      steps: [
+        'Brown 200g lamb mince with ½ finely chopped onion and 1 grated carrot until no pink remains.',
+        'Stir in 1 tbsp tomato purée and 250ml low-salt stock; simmer gently for 25 minutes until rich and soft.',
+        'Add a handful of peas for the final 3 minutes, then mash lightly.',
+        'Boil 3 chopped potatoes until soft, mash with a knob of butter and a splash of milk.',
+        'Spoon the mince into a dish, top with mash and bake at 200°C for 15 minutes until golden.',
+      ],
+    },
+    finger: {
+      name: 'Soft carrot batons',
+      steps: [
+        'Steam thick carrot batons for 10–12 minutes until very soft.',
+        'Cool and serve on the side for dipping into the pie.',
+      ],
+    },
+    ingredients: [
+      { id: 'lamb-mince', qty: '200g' },
+      { id: 'potato', qty: '3' },
+      { id: 'carrot', qty: '2' },
+      { id: 'onion', qty: '½' },
+      { id: 'peas', qty: 'handful' },
+      { id: 'low-salt-stock', qty: '1 cube' },
+    ],
+    allergens: ['milk'],
+    tags: ['iron-rich', 'family-meal', 'freezable'],
+  },
+
+  {
+    id: 'salmon-broccoli-pasta-bake',
+    title: 'Salmon & Broccoli Pasta Bake',
+    stages: ['stage3'],
+    meals: ['lunch', 'dinner'],
+    effort: 'hard',
+    emoji: '🧀',
+    gradient: ['#FFAB91', '#D84315'],
+    image: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=80',
+    intro: 'A creamy, golden bake with a proper homemade cheese sauce. Omega-3 rich and a guaranteed family favourite.',
+    puree: {
+      name: 'Creamy salmon, broccoli & pasta bake',
+      steps: [
+        'Cook 100g baby pasta until very soft; steam small broccoli florets for 6 minutes.',
+        'Poach 1 salmon fillet in a little milk for 8 minutes, then flake carefully checking for bones.',
+        'Make a roux: melt a knob of butter, stir in 1 tbsp flour, then whisk in 250ml whole milk until thick and smooth.',
+        'Stir 40g grated cheddar into the sauce, then fold in the pasta, broccoli and salmon.',
+        'Tip into a dish, sprinkle with a little extra cheese and bake at 190°C for 15 minutes until bubbling.',
+      ],
+    },
+    finger: {
+      name: 'Large soft pasta pieces & broccoli trees',
+      steps: [
+        'Reserve a few larger pasta shapes and long-stalked broccoli florets before mixing.',
+        'Coat lightly in the cheese sauce and cool before serving as pick-up pieces.',
+      ],
+    },
+    ingredients: [
+      { id: 'salmon', qty: '1 fillet' },
+      { id: 'broccoli', qty: '½ head' },
+      { id: 'pasta', qty: '100g' },
+      { id: 'cheddar', qty: '40g' },
+      { id: 'whole-milk', qty: '250ml' },
+      { id: 'flour', qty: '1 tbsp' },
+    ],
+    allergens: ['fish', 'milk', 'gluten'],
+    tags: ['omega-3', 'family-meal', 'freezable'],
+  },
+
+  {
+    id: 'chicken-apricot-tagine-couscous',
+    title: 'Chicken & Apricot Tagine with Couscous',
+    stages: ['stage3'],
+    meals: ['dinner'],
+    effort: 'hard',
+    emoji: '🍲',
+    gradient: ['#FFB74D', '#E65100'],
+    image: 'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=800&q=80',
+    intro: 'A fragrant, slow-cooked tagine that builds adventurous little palates. Naturally sweet from apricots and butternut.',
+    puree: {
+      name: 'Chicken, apricot & butternut tagine',
+      steps: [
+        'Soften ½ chopped onion in olive oil, then stir in ¼ tsp cumin and a pinch of cinnamon.',
+        'Add diced chicken thigh and brown gently for 5 minutes.',
+        'Add cubed butternut squash, 5 chopped dried apricots and 300ml low-salt stock.',
+        'Cover and simmer for 25–30 minutes until everything is meltingly soft, then mash to a chunky texture.',
+        'Serve over soft couscous soaked in a little of the cooking liquid.',
+      ],
+    },
+    finger: {
+      name: 'Soft butternut chunks & chicken strips',
+      steps: [
+        'Lift out a few large chunks of butternut and strips of chicken before mashing.',
+        'Cool slightly and serve as soft, graspable pieces.',
+      ],
+    },
+    ingredients: [
+      { id: 'chicken-thigh', qty: '2' },
+      { id: 'butternut', qty: '½' },
+      { id: 'dried-apricots', qty: '5' },
+      { id: 'couscous', qty: '50g' },
+      { id: 'onion', qty: '½' },
+      { id: 'cumin', qty: '¼ tsp' },
+    ],
+    allergens: ['gluten'],
+    tags: ['iron-rich', 'family-meal', 'freezable'],
+  },
+
+  {
+    id: 'hidden-veg-mac-cheese',
+    title: 'Hidden-Veg Mac & Cheese',
+    stages: ['stage3'],
+    meals: ['lunch', 'dinner'],
+    effort: 'hard',
+    emoji: '🧀',
+    gradient: ['#FFE082', '#F9A825'],
+    image: 'https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?w=800&q=80',
+    intro: 'Velvety mac and cheese with a whole portion of veg blended invisibly into the sauce. A proper homemade roux makes it special.',
+    puree: {
+      name: 'Creamy hidden-veg cheese sauce with pasta',
+      steps: [
+        'Steam cubed butternut squash and a few cauliflower florets until very soft (12 minutes).',
+        'Cook 100g baby pasta until soft and drain.',
+        'Make a roux: melt a knob of butter, stir in 1 tbsp flour, then whisk in 250ml whole milk until thick.',
+        'Blend the steamed veg into the sauce until silky, then stir in 40g grated cheddar until melted.',
+        'Fold the pasta through the sauce and warm gently before serving.',
+      ],
+    },
+    finger: {
+      name: 'Roasted cauliflower florets',
+      steps: [
+        'Reserve a few cauliflower florets, toss in olive oil and roast at 190°C for 20 minutes.',
+        'Cool — the stalk makes a natural handle for little hands.',
+      ],
+    },
+    ingredients: [
+      { id: 'pasta', qty: '100g' },
+      { id: 'cheddar', qty: '40g' },
+      { id: 'whole-milk', qty: '250ml' },
+      { id: 'butternut', qty: '¼' },
+      { id: 'cauliflower', qty: '½ small' },
+      { id: 'flour', qty: '1 tbsp' },
+    ],
+    allergens: ['milk', 'gluten'],
+    tags: ['veggie', 'family-meal', 'freezable'],
+  },
+
 ];
 
 export function getRecipeById(id, customRecipes = []) {

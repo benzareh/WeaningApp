@@ -75,7 +75,7 @@ export const INGREDIENTS = {
   'passata':        { name: 'Passata', emoji: '🍅', aisle: 'cupboard' },
   'chopped-tomatoes': { name: 'Tinned chopped tomatoes', emoji: '🍅', aisle: 'cupboard' },
   'coconut-milk':   { name: 'Coconut milk (tinned)', emoji: '🥥', aisle: 'cupboard' },
-  'olive-oil':      { name: 'Olive oil', emoji: '🫒', aisle: 'cupboard' },
+  'olive-oil':      { name: 'Olive oil', emoji: '🧴', aisle: 'cupboard' },
   'tahini':         { name: 'Tahini', emoji: '🫙', aisle: 'cupboard' },
   'flour':          { name: 'Plain flour', emoji: '🌾', aisle: 'cupboard' },
   'breadcrumbs':    { name: 'Breadcrumbs', emoji: '🍞', aisle: 'cupboard' },
