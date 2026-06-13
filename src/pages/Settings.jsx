@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 import useStore from '../store/useStore';
 import { ALLERGENS } from '../data/allergens';
 import { ageInMonths, formatAge, stageForAge, getStage } from '../utils/helpers';
+import { cloudEnabled } from '../lib/supabase';
+import { useAuth } from '../auth/AuthProvider';
 
 const serif = { fontFamily: "'Playfair Display', serif" };
 
 export default function Settings() {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   const profile = useStore((s) => s.profile);
   const setProfile = useStore((s) => s.setProfile);
   const resetAll = useStore((s) => s.resetAll);
@@ -129,12 +133,34 @@ export default function Settings() {
         </button>
       </div>
 
+      {/* Account */}
+      {cloudEnabled && user && (
+        <div className="rounded-3xl bg-white p-6 shadow-sm">
+          <h3 className="mb-1 font-semibold" style={serif}>👤 Account</h3>
+          <p className="text-sm text-[#1A2B3C]/60">
+            Signed in as <strong className="text-[#1A2B3C]">{user.email}</strong>
+          </p>
+          <p className="mt-1 text-xs text-[#1A2B3C]/45">
+            Your plans, recipes and food diary sync to your account and are private to your family.
+          </p>
+          <button
+            onClick={async () => { await signOut(); navigate('/login'); }}
+            className="mt-4 flex items-center gap-1.5 rounded-full border border-[#1A2B3C]/15 px-5 py-2.5 text-sm font-semibold text-[#1A2B3C]/70 transition hover:bg-[#FDF6EC]"
+          >
+            <LogOut size={15} /> Log out
+          </button>
+        </div>
+      )}
+
       {/* About */}
       <div className="rounded-3xl bg-white p-6 shadow-sm text-sm text-[#1A2B3C]/60">
         <h3 className="mb-2 font-semibold text-[#1A2B3C]" style={serif}>ℹ️ About Little Spoons</h3>
         <p>
-          All your data is stored privately on this device. Always follow NHS guidance on
-          introducing solids and allergens, and speak to your health visitor with any concerns.
+          {cloudEnabled
+            ? 'Your data is stored privately in your account. '
+            : 'All your data is stored privately on this device. '}
+          Always follow NHS guidance on introducing solids and allergens, and speak to your
+          health visitor with any concerns.
         </p>
       </div>
 

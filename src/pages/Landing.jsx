@@ -8,6 +8,8 @@ import RecipeImage from '../components/ui/RecipeImage';
 import { RECIPES } from '../data/recipes';
 import { AGE_STAGES } from '../data/allergens';
 import useStore from '../store/useStore';
+import { cloudEnabled } from '../lib/supabase';
+import { useAuth } from '../auth/AuthProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,6 +56,7 @@ const FEATURES = [
 
 export default function Landing() {
   const navigate = useNavigate();
+  const { session } = useAuth();
   const onboarded = useStore((s) => s.profile.onboarded);
   const heroRef = useRef(null);
   const rootRef = useRef(null);
@@ -133,7 +136,11 @@ export default function Landing() {
     RECIPES.find((r) => r.id === 'red-lentil-carrot-dahl'),
   ].filter(Boolean);
 
-  const start = () => navigate(onboarded ? '/app/planner' : '/welcome');
+  const start = () => {
+    // With accounts enabled, send signed-out visitors to login first.
+    if (cloudEnabled && !session) return navigate('/login');
+    navigate(onboarded ? '/app/planner' : '/welcome');
+  };
 
   return (
     <div ref={rootRef} className="min-h-screen overflow-x-hidden bg-[#FDF6EC] text-[#1A2B3C]">

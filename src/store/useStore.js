@@ -103,6 +103,19 @@ const useStore = create(
             : [...s.favourites, id],
         })),
 
+      // ── Cloud sync ───────────────────────────────────────────
+      // Replace the synced slice wholesale with a document loaded from
+      // Supabase. Used on login / when switching accounts.
+      loadState: (data) =>
+        set(() => ({
+          profile: data?.profile ?? { onboarded: false, babyName: '', dob: '', allergies: [], breakfastEnabled: false },
+          plan: data?.plan ?? {},
+          checked: data?.checked ?? {},
+          foodLog: data?.foodLog ?? {},
+          customRecipes: data?.customRecipes ?? [],
+          favourites: data?.favourites ?? [],
+        })),
+
       // ── Danger zone ──────────────────────────────────────────
       resetAll: () =>
         set({
@@ -117,5 +130,15 @@ const useStore = create(
     { name: 'little-spoons-storage' }
   )
 );
+
+// The fields that get synced to the cloud (everything except action functions).
+export const SYNC_KEYS = ['profile', 'plan', 'checked', 'foodLog', 'customRecipes', 'favourites'];
+
+// Pull just the serialisable data slice out of the current store state.
+export function getSyncSlice(state) {
+  const slice = {};
+  for (const k of SYNC_KEYS) slice[k] = state[k];
+  return slice;
+}
 
 export default useStore;

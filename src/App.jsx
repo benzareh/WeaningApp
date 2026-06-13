@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
 import useStore from './store/useStore';
+import { cloudEnabled } from './lib/supabase';
+import { AuthProvider, useAuth } from './auth/AuthProvider';
 import Onboarding from './pages/Onboarding';
+import Auth from './pages/Auth';
 
 // The landing page carries three.js + GSAP — keep it out of the main bundle
 // so the everyday app stays fast on mobile.
@@ -21,6 +24,19 @@ function ScrollToTop() {
   return null;
 }
 
+const Spinner = () => (
+  <div className="flex min-h-screen items-center justify-center bg-[#FDF6EC] text-4xl">🥄</div>
+);
+
+// Requires a signed-in session (when cloud accounts are enabled).
+function RequireAuth({ children }) {
+  const { session, loading } = useAuth();
+  if (!cloudEnabled) return children; // local-only mode: no login needed
+  if (loading) return <Spinner />;
+  if (!session) return <Navigate to="/login" replace />;
+  return children;
+}
+
 function RequireOnboarding({ children }) {
   const onboarded = useStore((s) => s.profile.onboarded);
   if (!onboarded) return <Navigate to="/welcome" replace />;
@@ -30,36 +46,48 @@ function RequireOnboarding({ children }) {
 export default function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-[#FDF6EC] text-4xl">🥄</div>}>
-              <Landing />
-            </Suspense>
-          }
-        />
-        <Route path="/welcome" element={<Onboarding />} />
-        <Route
-          path="/app"
-          element={
-            <RequireOnboarding>
-              <AppLayout />
-            </RequireOnboarding>
-          }
-        >
-          <Route index element={<Navigate to="/app/planner" replace />} />
-          <Route path="planner" element={<Planner />} />
-          <Route path="recipes" element={<Recipes />} />
-          <Route path="recipes/new" element={<AddRecipe />} />
-          <Route path="recipes/:id" element={<RecipeDetail />} />
-          <Route path="shopping" element={<Shopping />} />
-          <Route path="foods" element={<Foods />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <AuthProvider>
+        <ScrollToTop />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <Landing />
+              </Suspense>
+            }
+          />
+          <Route path="/login" element={<Auth />} />
+          <Route
+            path="/welcome"
+            element={
+              <RequireAuth>
+                <Onboarding />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/app"
+            element={
+              <RequireAuth>
+                <RequireOnboarding>
+                  <AppLayout />
+                </RequireOnboarding>
+              </RequireAuth>
+            }
+          >
+            <Route index element={<Navigate to="/app/planner" replace />} />
+            <Route path="planner" element={<Planner />} />
+            <Route path="recipes" element={<Recipes />} />
+            <Route path="recipes/new" element={<AddRecipe />} />
+            <Route path="recipes/:id" element={<RecipeDetail />} />
+            <Route path="shopping" element={<Shopping />} />
+            <Route path="foods" element={<Foods />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
