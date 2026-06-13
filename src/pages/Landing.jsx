@@ -130,10 +130,10 @@ export default function Landing() {
   }, []);
 
   const previewRecipes = [
-    RECIPES.find((r) => r.id === 'chicken-sweet-potato-apple'),
-    RECIPES.find((r) => r.id === 'salmon-pea-potato'),
-    RECIPES.find((r) => r.id === 'berry-yoghurt-oat-swirl'),
-    RECIPES.find((r) => r.id === 'red-lentil-carrot-dahl'),
+    RECIPES.find((r) => r.id === 'green-beans-chicken'),
+    RECIPES.find((r) => r.id === 'salmon-pesto-pasta'),
+    RECIPES.find((r) => r.id === 'blueberry-oaty-pancakes'),
+    RECIPES.find((r) => r.id === 'babys-first-curry'),
   ].filter(Boolean);
 
   const start = () => {
